@@ -1,7 +1,10 @@
 # Creakbox
 
-A standalone Windows TB-303-style bassline synth and step sequencer, built to be
-**fully usable from the keyboard and by a screen reader**.
+An extension of CreakBox: a standalone Windows bassline synth and step sequencer, built
+to be **fully usable from the keyboard and by a screen reader**. It started from a
+TB-303-style voice and still has one at its core, but it has grown well past imitating
+the 303 — variable-length and triplet patterns, reverse step, a PWM LFO, noise, and an
+acid FX block are all things the original box never had.
 
 The DSP is the original 2002–2004 Frank Reitz ("Bass Assessor") CreakBox / SilverBox
 engine, lifted verbatim. What was rewritten is everything around it: the VST plumbing
@@ -615,6 +618,7 @@ tools/          two standalone checks; no build, no dependencies
 reverse/        reverse-engineering notes on the 2002/2004 originals
 resource/       original 2002 resources
 creakbox.txt    Bass Assessor's original 2002 release note
+LICENSE         BSD 3-Clause, for this extension
 license-bmd.txt the 2004 bioroid media development license for the VST sources in src/
 ```
 
@@ -694,7 +698,8 @@ Tracked in full, with approach and acceptance tests, in **[`TODO.md`](TODO.md)**
 ## License
 
 The original CreakBox was released as freeware by Bass Assessor in 2002, free to use in
-your own tracks (see `creakbox.txt`). No license has been declared for this rewrite.
+your own tracks (see `creakbox.txt`). This extension of it is released under the
+BSD 3-Clause License — see `LICENSE`.
 
 The 2004 VST sources in `src/` (and the DSP the standalone reuses from them) are
 © 2004 bioroid media development under the BSD-style terms in `license-bmd.txt`, which
