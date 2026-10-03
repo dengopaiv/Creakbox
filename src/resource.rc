@@ -1,0 +1,307 @@
+#include <windows.h>
+#include "resource.h"
+
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Start new &track...\tCtrl+Shift+N",   IDM_FILE_NEW_TRACK
+        MENUITEM "&New random pattern\tCtrl+N",         IDM_FILE_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "&Open .roq song...\tCtrl+O",          IDM_FILE_OPEN_ROQ
+        MENUITEM "&Save .roq song\tCtrl+S",             IDM_FILE_SAVE_ROQ
+        MENUITEM SEPARATOR
+        MENUITEM "&Import legacy .cb module...\tCtrl+I", IDM_FILE_OPEN_CB
+        MENUITEM "Save to &WAV file...\tCtrl+W",        IDM_FILE_SAVE_WAV
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",                       IDM_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "C&lear pattern\tCtrl+L",      IDM_EDIT_CLEAR
+        MENUITEM "&Copy pattern\tCtrl+C",       IDM_EDIT_COPY
+        MENUITEM "Cu&t pattern\tCtrl+X",        IDM_EDIT_CUT
+        MENUITEM "&Paste pattern\tCtrl+V",      IDM_EDIT_PASTE
+        MENUITEM SEPARATOR
+        POPUP "&Random pattern"
+        BEGIN
+            MENUITEM "&Nicely (C-minor pentatonic)\tCtrl+E",    IDM_EDIT_RANDOM_NICELY
+            MENUITEM "&Retro 2002 (Eb blues)\tCtrl+R",          IDM_EDIT_RANDOM_RETRO
+            MENUITEM "&VST (C-major pentatonic)\tCtrl+Shift+R", IDM_EDIT_RANDOM_VST
+            MENUITEM "&Chromatic chaos\tCtrl+Shift+E",          IDM_EDIT_RANDOM_CHROMATIC
+        END
+        MENUITEM "Random &focused step\tCtrl+Shift+G",          IDM_EDIT_RANDOM_STEP
+        MENUITEM SEPARATOR
+        POPUP "Tra&nspose current pattern"
+        BEGIN
+            MENUITEM "Up 1 &semitone\tCtrl+Up",       IDM_EDIT_TRANSPOSE_UP
+            MENUITEM "Down 1 s&emitone\tCtrl+Down",   IDM_EDIT_TRANSPOSE_DOWN
+            MENUITEM "Up 1 &octave\tCtrl+Shift+Up",   IDM_EDIT_TRANSPOSE_OCT_UP
+            MENUITEM "Down 1 oc&tave\tCtrl+Shift+Down", IDM_EDIT_TRANSPOSE_OCT_DOWN
+        END
+        POPUP "Transpose &whole song"
+        BEGIN
+            MENUITEM "Up 1 s&emitone",          IDM_EDIT_TRANSPOSE_SONG_UP
+            MENUITEM "Down 1 se&mitone",        IDM_EDIT_TRANSPOSE_SONG_DOWN
+            MENUITEM "Up 1 oc&tave",            IDM_EDIT_TRANSPOSE_SONG_OCT_UP
+            MENUITEM "Down 1 oct&ave",          IDM_EDIT_TRANSPOSE_SONG_OCT_DOWN
+        END
+    END
+    POPUP "&Pattern"
+    BEGIN
+        MENUITEM "&Previous\tCtrl+Left",        IDM_PATTERN_PREV
+        MENUITEM "&Next\tCtrl+Right",           IDM_PATTERN_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Ne&w pattern\tCtrl+Shift+P",  IDM_PATTERN_NEW
+        MENUITEM "&Delete current pattern\tCtrl+Shift+Del",  IDM_PATTERN_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "&Triplet feel for this pattern\tCtrl+T",  IDM_PATTERN_TRIPLET
+    END
+    POPUP "P&lay"
+    BEGIN
+        MENUITEM "Play current &song\tF5",                  IDM_TRANSPORT_PLAY_SONG
+        MENUITEM "Play current &pattern\tF6",               IDM_TRANSPORT_PLAY_CURRENT
+        MENUITEM "Play &from current pattern\tF7",          IDM_TRANSPORT_PLAY_SEQUENCE
+        MENUITEM "S&top\tF8",                               IDM_TRANSPORT_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "&Run / Stop (toggle)",                    IDM_TRANSPORT_RUN_STOP
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Keyboard reference\tF1",     IDM_HELP_KEYS
+        MENUITEM "&About Creakbox...",          IDM_HELP_ABOUT
+    END
+END
+
+IDR_MAIN_MENU ACCELERATORS
+BEGIN
+    "N",        IDM_FILE_NEW,           VIRTKEY, CONTROL
+    "N",        IDM_FILE_NEW_TRACK,     VIRTKEY, CONTROL, SHIFT
+    "O",        IDM_FILE_OPEN_ROQ,      VIRTKEY, CONTROL
+    "I",        IDM_FILE_OPEN_CB,       VIRTKEY, CONTROL
+    "S",        IDM_FILE_SAVE_ROQ,      VIRTKEY, CONTROL
+    "W",        IDM_FILE_SAVE_WAV,      VIRTKEY, CONTROL
+    "L",        IDM_EDIT_CLEAR,         VIRTKEY, CONTROL
+    "C",        IDM_EDIT_COPY,          VIRTKEY, CONTROL
+    "X",        IDM_EDIT_CUT,           VIRTKEY, CONTROL
+    "V",        IDM_EDIT_PASTE,         VIRTKEY, CONTROL
+    "R",        IDM_EDIT_RANDOM_RETRO,  VIRTKEY, CONTROL
+    "E",        IDM_EDIT_RANDOM_NICELY, VIRTKEY, CONTROL
+    "R",        IDM_EDIT_RANDOM_VST,    VIRTKEY, CONTROL, SHIFT
+    "E",        IDM_EDIT_RANDOM_CHROMATIC, VIRTKEY, CONTROL, SHIFT
+    // Ctrl+Shift+G, not Alt+R: Alt+R belongs to the "&Run (F5)" button's
+    // mnemonic, and an accelerator is processed FIRST, so binding it here made
+    // that underline a promise the button could never keep. G is free, and this
+    // joins the Ctrl+Shift family below - everything that acts on the focused
+    // step, which is what this does.
+    "G",        IDM_EDIT_RANDOM_STEP,   VIRTKEY, CONTROL, SHIFT
+    // Transport lives on F5-F8. Space is deliberately NOT bound here:
+    // accelerators are processed before IsDialogMessage, so a global Space
+    // accelerator swallows the keystroke before any checkbox or button can
+    // see it, leaving Space dead on every control in the window.
+    VK_F5,      IDM_TRANSPORT_PLAY_SONG,     VIRTKEY
+    VK_F6,      IDM_TRANSPORT_PLAY_CURRENT,  VIRTKEY
+    VK_F7,      IDM_TRANSPORT_PLAY_SEQUENCE, VIRTKEY
+    VK_F8,      IDM_TRANSPORT_STOP,          VIRTKEY
+    VK_LEFT,    IDM_PATTERN_PREV,       VIRTKEY, CONTROL
+    VK_RIGHT,   IDM_PATTERN_NEXT,       VIRTKEY, CONTROL
+    // Ctrl+Shift+P, not Ctrl+Shift+N: N is already claimed above by
+    // IDM_FILE_NEW_TRACK, and the first matching entry wins, so this one
+    // could never fire while both were bound to the same chord.
+    "P",        IDM_PATTERN_NEW,        VIRTKEY, CONTROL, SHIFT
+    VK_DELETE,  IDM_PATTERN_DELETE,     VIRTKEY, CONTROL, SHIFT
+    "D",        IDM_OPEN_DISTORTION,    VIRTKEY, CONTROL
+    // Ctrl+T, not a mnemonic: every letter of "Triplet feel" is taken, and
+    // this is a control worth reaching without hunting for it.
+    "T",        IDM_PATTERN_TRIPLET,    VIRTKEY, CONTROL
+    VK_F1,      IDM_HELP_KEYS,          VIRTKEY
+    VK_UP,      IDM_EDIT_TRANSPOSE_UP,       VIRTKEY, CONTROL
+    VK_DOWN,    IDM_EDIT_TRANSPOSE_DOWN,     VIRTKEY, CONTROL
+    VK_UP,      IDM_EDIT_TRANSPOSE_OCT_UP,   VIRTKEY, CONTROL, SHIFT
+    VK_DOWN,    IDM_EDIT_TRANSPOSE_OCT_DOWN, VIRTKEY, CONTROL, SHIFT
+    // One family, one modifier: Ctrl+Shift+<letter> acts on the focused step.
+    // These were Alt+A / Alt+S / Alt+I. The first two shadowed the "&Accent"
+    // and "Re&sonance" slider mnemonics - accelerators win before a mnemonic is
+    // even considered, so those underlines could never fire. Alt+I collided
+    // with nothing, but it is moved anyway: three sibling actions on two
+    // different modifiers is worse to learn than one rule, and freeing Alt+I
+    // costs nothing.
+    "A",        IDM_STEP_TOGGLE_ACCENT,      VIRTKEY, CONTROL, SHIFT
+    "S",        IDM_STEP_TOGGLE_SLIDE,       VIRTKEY, CONTROL, SHIFT
+    "I",        IDM_STEP_TOGGLE_REVERSE,     VIRTKEY, CONTROL, SHIFT
+END
+
+// (IDD_STEP_EDIT dialog removed — replaced by inline per-step controls
+//  in the main window.)
+
+IDD_SWEEP_EDIT DIALOGEX 0, 0, 360, 260
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sweep editor"
+FONT 9, "Segoe UI", 400, 0, 0x0
+BEGIN
+    LTEXT           "Editing sweeps for: (parameter)", IDC_SWEEP_PARAM_LABEL, 8, 8, 340, 14
+    LTEXT           "Sweeps: 0", IDC_SWEEP_COUNT_LABEL, 8, 24, 140, 14
+    LTEXT           "Sweep &number:",    IDC_STATIC, 8, 44, 70, 14
+    COMBOBOX        IDC_SWEEP_NUMBER,    80, 42, 70, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Start &pattern:",   IDC_STATIC, 8, 68, 70, 14
+    COMBOBOX        IDC_SWEEP_START_PATTERN, 80, 66, 60, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Start s&tep:",      IDC_STATIC, 150, 68, 50, 14
+    COMBOBOX        IDC_SWEEP_START_STEP, 200, 66, 60, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Start &value:",     IDC_STATIC, 8, 92, 70, 14
+    CONTROL         "", IDC_SWEEP_START_VALUE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 90, 180, 18
+    LTEXT           "+0%",               IDC_SWEEP_START_VALUE_LBL, 264, 92, 80, 14
+    LTEXT           "End patter&n:",     IDC_STATIC, 8, 116, 70, 14
+    COMBOBOX        IDC_SWEEP_END_PATTERN, 80, 114, 60, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "End st&ep:",        IDC_STATIC, 150, 116, 50, 14
+    COMBOBOX        IDC_SWEEP_END_STEP,  200, 114, 60, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "End va&lue:",       IDC_STATIC, 8, 140, 70, 14
+    CONTROL         "", IDC_SWEEP_END_VALUE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 138, 180, 18
+    LTEXT           "+0%",               IDC_SWEEP_END_VALUE_LBL, 264, 140, 80, 14
+
+    PUSHBUTTON      "&Add",              IDC_SWEEP_ADD,    8,   170, 60, 18, WS_TABSTOP
+    PUSHBUTTON      "&Remove",           IDC_SWEEP_REMOVE, 72,  170, 60, 18, WS_TABSTOP
+    PUSHBUTTON      "&Copy",             IDC_SWEEP_COPY,   136, 170, 60, 18, WS_TABSTOP
+    PUSHBUTTON      "Pas&te",            IDC_SWEEP_PASTE,  200, 170, 60, 18, WS_TABSTOP
+    PUSHBUTTON      "&Save to file...",  IDC_SWEEP_SAVE,   8,   192, 90, 18, WS_TABSTOP
+    PUSHBUTTON      "L&oad from file...", IDC_SWEEP_LOAD,  102, 192, 90, 18, WS_TABSTOP
+    LTEXT           "",                  IDC_SWEEP_STATUS, 8, 216, 340, 14
+    DEFPUSHBUTTON   "OK",                IDOK,             240, 238, 50, 16, WS_TABSTOP
+    PUSHBUTTON      "Cancel",            IDCANCEL,         294, 238, 50, 16, WS_TABSTOP
+END
+
+IDD_OSCILLATOR DIALOGEX 0, 0, 300, 314
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Oscillator"
+FONT 9, "Segoe UI", 400, 0, 0x0
+BEGIN
+    LTEXT           "Main &PWM (square duty):", IDC_OSC_PWM_LABEL, 10, 12, 110, 14
+    CONTROL         "", IDC_OSC_PWM, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 120, 10, 120, 18
+    LTEXT           "50%",                     IDC_OSC_PWM_VALUE, 248, 12, 40, 14
+
+    LTEXT           "Sub sine &level (-1 oct):", IDC_OSC_SUB_LABEL, 10, 36, 110, 14
+    CONTROL         "", IDC_OSC_SUB, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 120, 34, 120, 18
+    LTEXT           "0%",                      IDC_OSC_SUB_VALUE, 248, 36, 40, 14
+
+    LTEXT           "N&oise level:",           IDC_OSC_NOISE_LABEL, 10, 60, 110, 14
+    CONTROL         "", IDC_OSC_NOISE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 120, 58, 120, 18
+    LTEXT           "0%",                      IDC_OSC_NOISE_VALUE, 248, 60, 40, 14
+
+    GROUPBOX        "Duplet (second oscillator)", IDC_STATIC, 8, 82, 284, 106
+    LTEXT           "Wave&form:",              IDC_OSC_DUP_WAVEFORM_LABEL, 16, 100, 60, 14
+    COMBOBOX        IDC_OSC_DUP_WAVEFORM,      80, 98, 80, 60, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "P&WM:",                   IDC_OSC_DUP_PWM_LABEL, 16, 122, 60, 14
+    CONTROL         "", IDC_OSC_DUP_PWM, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 120, 160, 18
+    LTEXT           "50%",                     IDC_OSC_DUP_PWM_VALUE, 246, 122, 40, 14
+    LTEXT           "&Detune:",                IDC_OSC_DUP_DETUNE_LABEL, 16, 144, 60, 14
+    CONTROL         "", IDC_OSC_DUP_DETUNE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 142, 160, 18
+    LTEXT           "+0 c",                    IDC_OSC_DUP_DETUNE_VALUE, 244, 144, 46, 14
+    LTEXT           "Le&vel:",                 IDC_OSC_DUP_LEVEL_LABEL, 16, 166, 60, 14
+    CONTROL         "", IDC_OSC_DUP_LEVEL, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 164, 160, 18
+    LTEXT           "0%",                      IDC_OSC_DUP_LEVEL_VALUE, 246, 166, 40, 14
+
+    GROUPBOX        "PWM LFO (triangle, free-running)", IDC_STATIC, 8, 192, 284, 84
+    LTEXT           "&Rate:",                  IDC_OSC_LFO_RATE_LABEL, 16, 210, 150, 14
+    CONTROL         "", IDC_OSC_LFO_RATE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 170, 208, 76, 18
+    LTEXT           "off",                     IDC_OSC_LFO_RATE_VALUE, 250, 210, 40, 14
+    LTEXT           "&Main depth:",            IDC_OSC_LFO_MAIN_LABEL, 16, 232, 150, 14
+    CONTROL         "", IDC_OSC_LFO_MAIN, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 170, 230, 76, 18
+    LTEXT           "0%",                      IDC_OSC_LFO_MAIN_VALUE, 250, 232, 40, 14
+    LTEXT           "D&uplet depth:",          IDC_OSC_LFO_DUP_LABEL, 16, 254, 150, 14
+    CONTROL         "", IDC_OSC_LFO_DUP, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 170, 252, 76, 18
+    LTEXT           "0%",                      IDC_OSC_LFO_DUP_VALUE, 250, 254, 40, 14
+
+    PUSHBUTTON      "Everybody &needs a 303",  IDC_OSC_RESET_303, 10, 286, 140, 18, WS_TABSTOP
+    DEFPUSHBUTTON   "&Close",                  IDOK, 230, 286, 60, 18, WS_TABSTOP
+END
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION    0,1,0,0
+ PRODUCTVERSION 0,1,0,0
+ FILEFLAGSMASK  0x17L
+ FILEFLAGS      0x0L
+ FILEOS         0x40004L
+ FILETYPE       0x1L
+ FILESUBTYPE    0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",      "Creakbox project"
+            VALUE "FileDescription",  "Creakbox — accessible TB-303 style bassline"
+            VALUE "FileVersion",      "0.1.0.0"
+            VALUE "InternalName",     "Creakbox"
+            VALUE "LegalCopyright",   "Original DSP (c) 2004 Frank Reitz / Bioroid Media Development, BSD-2-Clause. Standalone shell (c) 2026."
+            VALUE "OriginalFilename", "Creakbox.exe"
+            VALUE "ProductName",      "Creakbox"
+            VALUE "ProductVersion",   "0.1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+IDD_DISTORTION DIALOGEX 0, 0, 268, 252
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Acid FX"
+FONT 9, "Segoe UI", 400, 0, 0x0
+BEGIN
+    GROUPBOX        "Distortion", IDC_STATIC, 6, 2, 256, 100
+
+    LTEXT           "&Type:",   IDC_DIST_TYPE_LABEL, 14, 16, 62, 14
+    COMBOBOX        IDC_DIST_TYPE, 80, 14, 120, 90, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+
+    LTEXT           "&Gain:",   IDC_DIST_GAIN_LABEL, 14, 40, 62, 14
+    CONTROL         "", IDC_DIST_GAIN, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 38, 130, 18
+    LTEXT           "0%",       IDC_DIST_GAIN_VALUE, 216, 40, 44, 14
+
+    LTEXT           "T&one:",   IDC_DIST_TONE_LABEL, 14, 62, 62, 14
+    CONTROL         "", IDC_DIST_TONE, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 60, 130, 18
+    LTEXT           "50%",      IDC_DIST_TONE_VALUE, 216, 62, 44, 14
+
+    LTEXT           "&Level:",  IDC_DIST_LEVEL_LABEL, 14, 84, 62, 14
+    CONTROL         "", IDC_DIST_LEVEL, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 82, 130, 18
+    LTEXT           "100%",     IDC_DIST_LEVEL_VALUE, 216, 84, 44, 14
+
+    GROUPBOX        "Compressor", IDC_STATIC, 6, 106, 256, 54
+
+    LTEXT           "Th&reshold:", IDC_FX_COMP_THRESH_LABEL, 14, 120, 62, 14
+    CONTROL         "", IDC_FX_COMP_THRESH, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 118, 130, 18
+    LTEXT           "50%",      IDC_FX_COMP_THRESH_VALUE, 216, 120, 44, 14
+
+    LTEXT           "&Depth:",  IDC_FX_COMP_DEPTH_LABEL, 14, 142, 62, 14
+    CONTROL         "", IDC_FX_COMP_DEPTH, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 140, 130, 18
+    LTEXT           "off",      IDC_FX_COMP_DEPTH_VALUE, 216, 142, 44, 14
+
+    GROUPBOX        "Ring modulator", IDC_STATIC, 6, 164, 256, 54
+
+    LTEXT           "&Frequency:", IDC_FX_RING_HZ_LABEL, 14, 178, 62, 14
+    CONTROL         "", IDC_FX_RING_HZ, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 176, 130, 18
+    LTEXT           "100 Hz",   IDC_FX_RING_HZ_VALUE, 216, 178, 44, 14
+
+    LTEXT           "&Amount:",  IDC_FX_RING_AMOUNT_LABEL, 14, 200, 62, 14
+    CONTROL         "", IDC_FX_RING_AMOUNT, "msctls_trackbar32",
+                    TBS_HORZ | TBS_AUTOTICKS | WS_TABSTOP, 80, 198, 130, 18
+    LTEXT           "off",      IDC_FX_RING_AMOUNT_VALUE, 216, 200, 44, 14
+
+    DEFPUSHBUTTON   "&Close",   IDOK, 200, 226, 60, 18, WS_TABSTOP
+END

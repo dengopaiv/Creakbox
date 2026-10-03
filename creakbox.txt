@@ -1,0 +1,20 @@
+CreakBox 303 emulator
+---------------------
+
+CreakBox - not much to say: It's ugly, it's hard to program, it's not even realtime, there is no manual or help file, you must figure out how to use the program yourself but it sounds COOL. 
+
+!!! MP3.COM ARTISTS READ ON !!!
+If you use CreakBox in your own tracks, please send me a mail with your artist name, track name and your description of the track and I'll add it to my "Made With CreakBox" station.
+
+LICENSE
+CreakBox is a freeware 303 emulator. It's free to use it in your own tracks.
+
+Now... go create some fat tracks!
+
+------------------------------------
+          Bass Assessor
+     bassassessor@hotmail.com
+------------------------------------
+http://www.mp3.com/Bass_Assessor
+http://www.mp3.com/stations/creakbox
+http://geocities.com/bassassessor

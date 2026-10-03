@@ -1,0 +1,11 @@
+# Build output
+build/
+
+# Local tooling settings
+.claude/settings.local.json
+
+# Legacy / large files kept in the working tree only
+/CREAKBOX.EXE
+/cb303.wav
+/modules/
+/reverse/ghidra_proj/

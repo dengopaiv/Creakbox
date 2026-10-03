@@ -1,0 +1,171 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+//LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+128                     BITMAP  DISCARDABLE     "bmp00128.bmp"
+129                     BITMAP  DISCARDABLE     "bmp00129.bmp"
+130                     BITMAP  DISCARDABLE     "bmp00130.bmp"
+131                     BITMAP  DISCARDABLE     "bmp00131.bmp"
+132                     BITMAP  DISCARDABLE     "bmp00132.bmp"
+133                     BITMAP  DISCARDABLE     "bmp00133.bmp"
+134                     BITMAP  DISCARDABLE     "bmp00134.bmp"
+135                     BITMAP  DISCARDABLE     "bmp00135.bmp"
+136                     BITMAP  DISCARDABLE     "bmp00136.bmp"
+137                     BITMAP  DISCARDABLE     "bmp00137.bmp"
+138                     BITMAP  DISCARDABLE     "bmp00138.bmp"
+139                     BITMAP  DISCARDABLE     "bmp00139.bmp"
+
+140                     BITMAP  DISCARDABLE     "bmp00140.bmp"
+141                     BITMAP  DISCARDABLE     "bmp00141.bmp"
+142                     BITMAP  DISCARDABLE     "bmp00142.bmp"
+143                     BITMAP  DISCARDABLE     "bmp00143.bmp"
+144                     BITMAP  DISCARDABLE     "bmp00144.bmp"
+145                     BITMAP  DISCARDABLE     "bmp00145.bmp"
+146                     BITMAP  DISCARDABLE     "bmp00146.bmp"
+147                     BITMAP  DISCARDABLE     "bmp00147.bmp"
+148                     BITMAP  DISCARDABLE     "bmp00148.bmp"
+149                     BITMAP  DISCARDABLE     "bmp00149.bmp"
+
+150                     BITMAP  DISCARDABLE     "bmp00150.bmp"
+151                     BITMAP  DISCARDABLE     "bmp00151.bmp"
+152                     BITMAP  DISCARDABLE     "bmp00152.bmp"
+153                     BITMAP  DISCARDABLE     "bmp00153.bmp"
+154                     BITMAP  DISCARDABLE     "bmp00154.bmp"
+155                     BITMAP  DISCARDABLE     "bmp00155.bmp"
+156                     BITMAP  DISCARDABLE     "bmp00156.bmp"
+157                     BITMAP  DISCARDABLE     "bmp00157.bmp"
+158                     BITMAP  DISCARDABLE     "bmp00158.bmp"
+159                     BITMAP  DISCARDABLE     "bmp00159.bmp"
+
+160                     BITMAP  DISCARDABLE     "bmp00160.bmp"
+161                     BITMAP  DISCARDABLE     "bmp00161.bmp"
+162                     BITMAP  DISCARDABLE     "bmp00162.bmp"
+163                     BITMAP  DISCARDABLE     "bmp00163.bmp"
+164                     BITMAP  DISCARDABLE     "bmp00164.bmp"
+165                     BITMAP  DISCARDABLE     "bmp00165.bmp"
+166                     BITMAP  DISCARDABLE     "bmp00166.bmp"
+167                     BITMAP  DISCARDABLE     "bmp00167.bmp"
+168                     BITMAP  DISCARDABLE     "bmp00168.bmp"
+169                     BITMAP  DISCARDABLE     "bmp00169.bmp"
+
+170                     BITMAP  DISCARDABLE     "bmp00170.bmp"
+171                     BITMAP  DISCARDABLE     "bmp00171.bmp"
+172                     BITMAP  DISCARDABLE     "bmp00172.bmp"
+173                     BITMAP  DISCARDABLE     "bmp00173.bmp"
+174                     BITMAP  DISCARDABLE     "bmp00174.bmp"
+175                     BITMAP  DISCARDABLE     "bmp00175.bmp"
+176                     BITMAP  DISCARDABLE     "bmp00176.bmp"
+177                     BITMAP  DISCARDABLE     "bmp00177.bmp"
+178                     BITMAP  DISCARDABLE     "bmp00178.bmp"
+179                     BITMAP  DISCARDABLE     "bmp00179.bmp"
+
+180                     BITMAP  DISCARDABLE     "bmp00180.bmp"
+181                     BITMAP  DISCARDABLE     "bmp00181.bmp"
+182                     BITMAP  DISCARDABLE     "bmp00182.bmp"
+183                     BITMAP  DISCARDABLE     "bmp00183.bmp"
+184                     BITMAP  DISCARDABLE     "bmp00184.bmp"
+185                     BITMAP  DISCARDABLE     "bmp00185.bmp"
+186                     BITMAP  DISCARDABLE     "bmp00186.bmp"
+187                     BITMAP  DISCARDABLE     "bmp00187.bmp"
+188                     BITMAP  DISCARDABLE     "bmp00188.bmp"
+
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Bioroid\0"
+            VALUE "FileDescription", "Turntablist\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Turntablist\0"
+            VALUE "LegalCopyright", "Copyright © 2001 Bioroid\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ScratchaGUI.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Bioroid Turntablist\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
